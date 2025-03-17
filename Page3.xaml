@@ -27,7 +27,8 @@
                     </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
                 <Grid.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapGestureRecognizer_Tapped"/>
+                    <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="OnDoubleTapped"/>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnSingleTapped"/>
                 </Grid.GestureRecognizers>
                 <Label Text="{Binding Name}" />
             </Grid>

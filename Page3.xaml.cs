@@ -11,9 +11,14 @@ public partial class Page3 : ContentPage
         BindingContext = new Page3ViewModel();
     }
 
-    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    private async void OnDoubleTapped(object sender, TappedEventArgs e)
     {
-        Shell.Current.DisplayAlert("Alert", "You have double tapped the item", "OK");
+        await Shell.Current.DisplayAlert("Double Tap", "You have double tapped the item", "OK");
+    }
+
+    private async void OnSingleTapped(object sender, TappedEventArgs e)
+    {
+        await Shell.Current.DisplayAlert("Single Tap", "You have single tapped the item", "OK");
     }
 }
 
