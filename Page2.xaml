@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:n="clr-namespace:CollectionViewHeader"
+             x:DataType="n:Page2ViewModel"
+             Padding="12"
+             x:Class="CollectionViewHeader.Page2">
+    <ContentPage.Resources>
+        <Style TargetType="Border"
+               x:Key="SecondaryBorder">
+            <Setter Property="StrokeThickness"
+                    Value="0" />
+            <Setter Property="StrokeShape"
+                    Value="Rectangle" />
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Dark={StaticResource Gray950}, Light={StaticResource Gray100}}" />
+            <Setter Property="Padding"
+                    Value="10" />
+            <Setter Property="StrokeShape">
+                <Setter.Value>
+                    <RoundRectangle CornerRadius="10" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <LinearGradientBrush x:Key="PrimaryLinearGradientBrush"
+                             EndPoint="1,0">
+            <GradientStop Color="Red"
+                          Offset="0.1" />
+            <GradientStop Color="Yellow"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+        <DataTemplate x:Key="ItemTemplate"
+                      x:DataType="n:Person">
+            <Border Style="{StaticResource SecondaryBorder}"
+                    Padding="10" HeightRequest="70">
+                <Label Text="{Binding Name}" />
+            </Border>
+        </DataTemplate>
+    </ContentPage.Resources>
+    <CollectionView ItemsSource="{Binding People}"
+                    ItemTemplate="{StaticResource ItemTemplate}"
+                    Header="{Binding .}">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical"
+                               ItemSpacing="5" />
+        </CollectionView.ItemsLayout>
+        <CollectionView.HeaderTemplate>
+            <DataTemplate>
+                <Border HeightRequest="190">
+                    <VerticalStackLayout HeightRequest="120">
+                        <Grid Background="{StaticResource PrimaryLinearGradientBrush}">
+                            <Grid Padding="12">
+                                <Image Grid.Row="0"
+                                   WidthRequest="100"
+                                   HeightRequest="100"
+                                   HorizontalOptions="End"
+                                   Source="{Binding SelectedPerson.ImageName}"
+                                   Opacity="0.8">
+                                    <Image.Clip>
+                                        <EllipseGeometry Center="50,50"
+                                                     RadiusX="50"
+                                                     RadiusY="50" />
+                                    </Image.Clip>
+                                </Image>
+                                <Label Grid.Row="0"
+                                   Text="{Binding SelectedPerson.Name}"
+                                   FontAttributes="Bold"
+                                   FontSize="20" />
+                            </Grid>
+                        </Grid>
+
+                        <Grid HeightRequest="70" BackgroundColor="Red">
+                            <Label Text="Test"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+            </DataTemplate>
+        </CollectionView.HeaderTemplate>
+    </CollectionView>
+</ContentPage>

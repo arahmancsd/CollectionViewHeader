@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:n="clr-namespace:CollectionViewHeader"
+             x:DataType="n:Page3ViewModel"
+             Padding="12"
+             x:Class="CollectionViewHeader.Page3">
+    <ContentPage.Resources>
+        <DataTemplate x:Key="ItemTemplate"
+                      x:DataType="n:Person">
+            <Grid HeightRequest="70"
+                    Padding="10">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                    Value="{AppThemeBinding Light=Red, Dark=Green}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                    Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapGestureRecognizer_Tapped"/>
+                </Grid.GestureRecognizers>
+                <Label Text="{Binding Name}" />
+            </Grid>
+        </DataTemplate>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="Auto, *" RowSpacing="20">
+        <Label FontSize="Large" Text="This page shows that the Selected Item visual state doesn't work when there is a GestureRecognizers on the Grid in the CollectionView DataTemplate. The item visual state works when you remove the GestureRecognizers from the Grid." 
+               HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding People}"
+                ItemTemplate="{StaticResource ItemTemplate}"
+                        SelectionMode="Single"
+                SelectedItem="{Binding SelectedPerson}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                           ItemSpacing="5" />
+            </CollectionView.ItemsLayout>
+        </CollectionView>
+    </Grid>
+</ContentPage>

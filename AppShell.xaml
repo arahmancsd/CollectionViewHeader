@@ -7,9 +7,21 @@
     Shell.FlyoutBehavior="Disabled"
     Title="CollectionViewHeader">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+
+        <ShellContent
+            Title="Page2"
+            ContentTemplate="{DataTemplate local:Page2}"
+            Route="Page2" />
+
+        <ShellContent
+             Title="Page3"
+             ContentTemplate="{DataTemplate local:Page3}"
+             Route="Page2" />
+    </TabBar>
 
 </Shell>
