@@ -34,6 +34,14 @@ public sealed partial class Page3ViewModel : ObservableObject
     [ObservableProperty]
     private Person selectedPerson = new(1, $"Random Person 1");
 
+    partial void OnSelectedPersonChanged(Person value)
+    {
+        if (value is not null)
+        {
+            Console.WriteLine($"Selected Person: {value.Name}");
+        }
+    }
+
     private void AddPersons()
     {
         for (int index = 1; index < 100; index++)
